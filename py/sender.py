@@ -27,8 +27,7 @@ def connect_to_broker():
 def disconnect_from_broker():
     client.disconnect()
 
-
-def test():
+def send_alerts():
     alert_messages = [
         f"alert;call firefighters;smoke detected;101;{get_current_datetime()}",
         f"alert;decrease temperature;temperature too high;103;{get_current_datetime()}",
@@ -36,17 +35,12 @@ def test():
         f"alert;increase humidity;humidity too low;102;{get_current_datetime()}",
         f"alert;decrease humidity;humidity too high;202;{get_current_datetime()}"
     ]
-    
-    connect_to_broker()
-    
     for message in alert_messages:
         publish_message(message)
         print(f"Published message: {message}")
         time.sleep(1)
-        
-    disconnect_from_broker()
-
 
 if __name__ == "__main__":
-    test()
-    
+    connect_to_broker()
+    send_alerts()
+    disconnect_from_broker()
