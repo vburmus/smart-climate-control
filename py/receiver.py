@@ -4,9 +4,9 @@
 
 import paho.mqtt.client as mqtt
 import mysql.connector as mysql
-
+import ssl
 # The broker name or IP address.
-BROKER = "localhost"
+BROKER = "127.0.0.1"
 
 # Database
 db = mysql.connect(
@@ -21,6 +21,10 @@ cursor = db.cursor()
 
 # The MQTT client.
 client = mqtt.Client()
+client.enable_logger()
+
+client.tls_set(ca_certs="keys/ca.crt", certfile="keys/client.crt", keyfile="keys/client.key",tls_version=ssl.PROTOCOL_TLSv1_2)
+client.tls_insecure_set(True)
 
 def process_message(client, userdata, message):
     # Decode message.
@@ -29,7 +33,7 @@ def process_message(client, userdata, message):
 
 def connect_to_broker():
     # Connect to the broker.
-    client.connect(BROKER)
+    client.connect(BROKER, port=8883)
     # Send message about conenction.
     client.on_message = process_message
     # Starts client and subscribe.
