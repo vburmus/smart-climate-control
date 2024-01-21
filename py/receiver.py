@@ -1,10 +1,11 @@
-#source /home/maryush/Documents/IoT/venv/bin/activate
+#!/home/maryush/Documents/IoT/venv/bin/python3
 
 # pylint: disable=missing-docstring
 
+import ssl
 import paho.mqtt.client as mqtt
 import mysql.connector as mysql
-import ssl
+
 # The broker name or IP address.
 BROKER = "127.0.0.1"
 
@@ -29,7 +30,28 @@ client.tls_insecure_set(True)
 def process_message(client, userdata, message):
     # Decode message.
     message_decoded = str(message.payload.decode("utf-8"))
-    print(message_decoded)
+    save_message_to_db(message_decoded)
+
+def save_message_to_db(message):
+    # Parse the message
+    parts = message.split(";")
+    if(parts[0] == "alert"):
+        process_alert(parts)
+
+def process_alert(parts):
+    if len(parts) == 5:
+        action, cause, room_nr, date = parts[1], parts[2], parts[3], parts[4]
+
+        # Insert data into the database
+        insert_query = "INSERT INTO alert (action, cause, room_nr, date) VALUES (%s, %s, %s, %s)"
+        insert_data = (action, cause, room_nr, date)
+        cursor.execute(insert_query, insert_data)
+        db.commit()
+
+        print(f"Run action: {action}")
+    else:
+        print("Invalid message format!")
+
 
 def connect_to_broker():
     # Connect to the broker.
