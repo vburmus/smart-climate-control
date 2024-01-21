@@ -3,9 +3,21 @@
 # pylint: disable=missing-docstring
 
 import paho.mqtt.client as mqtt
+import mysql.connector as mysql
 
 # The broker name or IP address.
 BROKER = "localhost"
+
+# Database
+db = mysql.connect(
+    host="localhost",
+    user="marpad",
+    password="marpad",
+    database="smart-climate-controll"
+)
+
+# DB cursor
+cursor = db.cursor()
 
 # The MQTT client.
 client = mqtt.Client()
