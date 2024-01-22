@@ -1,9 +1,10 @@
 #!/home/maryush/Documents/IoT/venv/bin/python3
 from flask import Flask, jsonify,request
+from flask_cors import CORS 
 from mqtt_utils import connect,configure_broker,publish_message
 from db_utils import connect_to_db
 app = Flask(__name__)
-
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 db = connect_to_db()
 client = configure_broker()
 cursor = db.cursor()
@@ -43,17 +44,17 @@ def get_all_allerts():
     select_query = "SELECT * FROM alert;"
     cursor.execute(select_query)
     allerts = cursor.fetchall()
-    room_list = []
+    alert_list = []
     for allert in allerts:
-        room_dict = {
+        alert_dict = {
             'id': allert[0],
             'action': allert[1],
             'cause': allert[2],
             'date':allert[3].strftime("%Y-%m-%d %H:%M:%S"),
             'room_id': allert[4]
         }
-        room_list.append(room_dict)
-    return jsonify(rooms=room_list)
+        alert_list.append(alert_dict)
+    return jsonify(alerts=alert_list)
 
 @app.route('/api/v1/rooms/<int:room_id>', methods=['GET'])
 def get_room_by_id(room_id):
@@ -93,4 +94,4 @@ def create_room():
     
 if __name__ == '__main__':
     connect(client)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8080)
