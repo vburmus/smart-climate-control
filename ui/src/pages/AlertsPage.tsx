@@ -1,13 +1,38 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Loader from "../components/common/Loader";
 import AlertRowComponent from "../components/AlertRowComponent";
+import {isAxiosError} from "axios";
+import {Alert} from "../utils/types";
+import {findAllAlerts} from "../utils/alertsUtils";
 const AlertsPage = () => {
     const alertParams = [
         "Action", "Cause", "Room", "Date", "Time"
     ];
     const [isLoading, setIsLoading] = useState(false)
+    const [alerts, setAlerts] = useState<Alert[]>()
+    const [error, setError] = useState()
 
-    return (isLoading ? <Loader/> :
+
+    const fetchData = async () => {
+        try {
+            const result = await findAllAlerts();
+            setAlerts(result.alerts)
+        } catch(e) {
+            if (isAxiosError(e) && e.response) {
+                setError(e.response.data.message)
+            }
+        }
+    };
+
+
+    useEffect(() => {
+        fetchData()
+        setIsLoading(false);
+    }, []);
+
+
+
+    return (isLoading ? <Loader/> : error || !alerts ? <h1 className="m-5 fw-bold text-center text-danger">{error}</h1> :
             <div className="d-flex flex-column m-5 gap-3 w-75">
                 <h1 className="fw-bold text-primary text-center">Your alerts:</h1>
 
@@ -20,7 +45,9 @@ const AlertsPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <AlertRowComponent/>
+                    {alerts.map((alert) => {
+                        return <AlertRowComponent alert={alert}/>
+                    })}
                     </tbody>
 
                 </table>
