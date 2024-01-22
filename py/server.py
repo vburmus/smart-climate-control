@@ -21,7 +21,19 @@ def save_message_to_db(message):
         process_alert(parts)
     elif(parts[0] == "room"):
         process_room_action(parts)
+    elif(parts[0] == "sensor_data"):
+        process_measurement(parts)
     
+def process_measurement(parts):
+    if len(parts)==6:
+        room_id,temperature,humidity,pressure,date = parts[1],parts[2],parts[3],parts[4],parts[5]
+        insert_query = "INSERT INTO measurement (temperature,humidity, pressure, room_id, time) VALUES (%s, %s, %s, %s, %s)"
+        insert_data = (temperature, humidity, pressure, room_id, date)
+        cursor.execute(insert_query, insert_data)
+        db.commit()
+        print(f"Measured in room {room_id}: t = {temperature}C, p = {pressure}Pa, h = {humidity}%")
+    else:
+        print("Invalid message format!")
 
 def process_alert(parts):
     if len(parts) == 5:
@@ -37,6 +49,7 @@ def process_alert(parts):
         print("Invalid message format!")
 
 def create_room(parts):
+
     if len(parts) == 5:
         id,name, preferred_temp = parts[2], parts[3],parts[4]
         insert_query = "INSERT INTO room (id,name,preferred_temp) VALUES (%s,%s, %s)"
