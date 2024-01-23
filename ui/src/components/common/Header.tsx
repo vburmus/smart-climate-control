@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Image} from "react-bootstrap";
 import "../../styles/Header.css"
 import {Link, useLocation} from "react-router-dom";
+import logoImage from "../../assets/images/logo.png"
 
 const Header = () => {
     const location = useLocation()
@@ -18,7 +19,7 @@ const Header = () => {
     return (
         <header className="navbar text-primary shadow-lg d-flex p-4 px-5 justify-content-between">
             <Link to="/">
-                <Image src="logo.png" className="img-fluid logo"/>
+                <Image src={logoImage} className="img-fluid logo"/>
             </Link>
             <div className="d-flex gap-5">
                 {routes.map((route) => (
