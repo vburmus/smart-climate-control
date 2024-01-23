@@ -6,4 +6,9 @@ const findAllRooms = async () => {
     return response.data
 }
 
-export {findAllRooms}
+const findRoom = async (id: string) => {
+    const response = await axiosInstance.get(roomsEndpoint + `/${id}`)
+    return response.data
+}
+
+export {findAllRooms, findRoom}
