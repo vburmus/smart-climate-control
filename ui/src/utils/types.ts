@@ -21,3 +21,7 @@ export interface Plots {
     humidity: string,
     pressure: string
 }
+
+export interface UpdateRequest {
+    preferred_temp: number
+}
