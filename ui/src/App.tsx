@@ -5,6 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RoomsPage from "./pages/RoomsPage";
 import AlertsPage from "./pages/AlertsPage";
+import RoomDetailsPage from "./pages/RoomDetailsPage";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/rooms" element={<RoomsPage/>}/>
                 <Route path="/alerts" element={<AlertsPage/>}/>
+                <Route path="/room/:id" element={<RoomDetailsPage/>}/>
             </Routes>
         </div>
     </main>
