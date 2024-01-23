@@ -21,16 +21,14 @@ const AlertsPage = () => {
             if (isAxiosError(e) && e.response) {
                 setError(e.response.data.message)
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
-
     useEffect(() => {
         fetchData()
-        setIsLoading(false);
     }, []);
-
-
 
     return (isLoading ? <Loader/> : error || !alerts ? <h1 className="m-5 fw-bold text-center text-danger">{error}</h1> :
             <div className="d-flex flex-column m-5 gap-3 w-75">

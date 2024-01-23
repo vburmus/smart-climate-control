@@ -18,13 +18,14 @@ const RoomsPage = () => {
             if (isAxiosError(e) && e.response) {
                 setError(e.response.data.message)
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
 
     useEffect(() => {
         fetchData()
-        setIsLoading(false);
     }, []);
 
 
