@@ -1,6 +1,9 @@
 #!/home/maryush/Documents/IoT/venv/bin/python3
 from flask import Flask, jsonify,request
 from flask_cors import CORS 
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 from mqtt_utils import connect,configure_broker,publish_message
 from db_utils import connect_to_db
 app = Flask(__name__)
@@ -75,6 +78,42 @@ def get_room_by_id(room_id):
         return jsonify(room_dict)
     else:
         return jsonify(message='Room not found'), 404
+
+def generate_plot(times, values, ylabel, title):
+    plt.figure(figsize=(10, 8))
+    plt.plot(times, values, marker="o")
+    plt.xlabel('Time')
+    plt.xticks(rotation='vertical')
+    plt.ylabel(ylabel)
+    plt.title(title)
+
+    image_stream = BytesIO()
+    plt.savefig(image_stream, format='png')
+    image_stream.seek(0)
+    plt.clf()
+
+    return base64.b64encode(image_stream.read()).decode('utf-8')
+
+@app.route('/api/v1/rooms/plot/<int:room_id>', methods=['GET'])
+def get_room_plot_by_id(room_id):
+    select_query = "SELECT m.temperature, m.humidity, m.pressure, m.time FROM room as r JOIN measurement as m ON r.id = m.room_id WHERE r.id = %s ORDER BY m.time DESC LIMIT 20"
+    cursor.execute(select_query, (room_id,))
+    measurements = cursor.fetchall()
+
+    if measurements:
+        times = [record[3].strftime("%H:%M:%S") for record in measurements]
+        temperatures = [record[0] for record in measurements]
+        humidity_values = [record[1] for record in measurements]
+        pressure_values = [record[2] for record in measurements]
+
+        temperature_plot = generate_plot(times, temperatures, 'Temperature', f'Temperature for Room {room_id}')
+        humidity_plot = generate_plot(times, humidity_values, 'Humidity', f'Humidity for Room {room_id}')
+        pressure_plot = generate_plot(times, pressure_values, 'Pressure', f'Pressure for Room {room_id}')
+
+        return jsonify(temperature=temperature_plot, humidity=humidity_plot, pressure=pressure_plot), 200
+
+    return jsonify(message='Room not found or no records found'), 404
+
 
 @app.route('/api/v1/rooms', methods=['POST'])
 def create_room():
