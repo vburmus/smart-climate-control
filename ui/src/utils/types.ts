@@ -9,9 +9,10 @@ export interface Alert {
 export interface Room {
     id: number,
     name: string,
-    preferredTemp?: number,
+    preferred_temp?: number,
     humidity: number,
     temperature: number,
+    pressure: number,
     time: string
 }
 
