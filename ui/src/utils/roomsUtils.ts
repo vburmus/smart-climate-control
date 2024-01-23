@@ -1,4 +1,5 @@
 import axiosInstance from "./axiosConfig";
+import {UpdateRequest} from "./types";
 
 const roomsEndpoint = "/api/v1/rooms";
 const findAllRooms = async () => {
@@ -11,4 +12,9 @@ const findRoom = async (id: string) => {
     return response.data
 }
 
-export {findAllRooms, findRoom}
+const updatePreferredTemperature = async (id:string, updateRequest: UpdateRequest) => {
+    const response = await axiosInstance.post(roomsEndpoint + `/update-temperature/${id}`, updateRequest)
+    return response.data
+}
+
+export {findAllRooms, findRoom, updatePreferredTemperature}
