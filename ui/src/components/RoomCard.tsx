@@ -1,7 +1,8 @@
 import React from 'react';
-import {DropletFill, Thermometer} from "react-bootstrap-icons";
+import {DropletFill, Speedometer, Thermometer} from "react-bootstrap-icons";
 import {Room} from "../utils/types";
 import {Link} from "react-router-dom";
+import "../styles/Hover.css"
 
 type RoomCardProps = {
     room: Room
@@ -10,20 +11,24 @@ type RoomCardProps = {
 const RoomCard = ({room}: RoomCardProps) => {
     return (
         <Link to={`/room/${room.id}`} style={{ textDecoration: 'none' }}>
-            <div className="d-flex flex-column bg-primary rounded-4">
+            <div className="d-flex flex-column bg-primary rounded-4 hover-class">
                 <div className="p-3">
                     <h2 className="fw-bold text-white text-center">Room #{room.id}</h2>
                 </div>
-                <div className="bg-info p-4 rounded-bottom-4 px-5">
+                <div className="bg-info rounded-bottom-4 px-5 py-5">
                     <h4 className="fw-bold text-center text-black">Last Update</h4>
                     <div className="d-flex flex-wrap mt-5 gap-4">
-                        <div className="d-flex flex-column gap-3 align-items-center px-4">
+                        <div className="d-flex flex-column gap-3 align-items-center justify-content-center px-4">
                             <Thermometer size={35} className="text-black"/>
                             <h5 className="fw-bold text-center text-black">{room.temperature} °C</h5>
                         </div>
-                        <div className="d-flex flex-column gap-3 align-items-center px-4">
+                        <div className="d-flex flex-column gap-3 align-items-center justify-content-center px-4">
                             <DropletFill size={35} className="text-black"/>
                             <h5 className="fw-bold text-center text-black">{room.humidity} %</h5>
+                        </div>
+                        <div className="d-flex flex-column gap-3 align-items-center justify-content-center px-4">
+                            <Speedometer size={35} className="text-black"/>
+                            <h5 className="fw-bold text-center text-black">{room.pressure} hPa</h5>
                         </div>
                     </div>
                 </div>
