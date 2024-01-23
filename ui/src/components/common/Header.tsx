@@ -24,7 +24,7 @@ const Header = () => {
             <div className="d-flex gap-5">
                 {routes.map((route) => (
                     <Link key={route.path} to={route.path} style={{ textDecoration: 'none' }}>
-                        <h3 className={getLinkClass(route.path)}>{route.label}</h3>
+                        <h4 className={getLinkClass(route.path)}>{route.label}</h4>
                     </Link>
                 ))}
             </div>

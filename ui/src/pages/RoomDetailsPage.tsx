@@ -42,12 +42,12 @@ const RoomDetailsPage = () => {
         fetchData()
     }, []);
 
-    return (isLoading ? <Loader/> : error ? <h1 className="m-5 fw-bold text-center text-danger">{error}</h1> :
+    return (isLoading ? <Loader/> : error ? <h2 className="m-5 fw-bold text-center text-danger">{error}</h2> :
             <div className="d-flex flex-column m-5">
-                <h1 className="fw-bold text-primary text-center">Room #{id} ({room?.name})</h1>
+                <h2 className="fw-bold text-primary text-center">Room #{id} ({room?.name})</h2>
                 <div>
                     <Link to={`/rooms`}>
-                        <Button variant="primary" className="rounded-3 fw-bold text-white fs-5 px-5 py-3">
+                        <Button variant="primary" className="rounded-3 fw-bold text-white fs-5">
                             <ArrowLeft size={25}/> Back
                         </Button>
                     </Link>
