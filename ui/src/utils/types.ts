@@ -14,3 +14,9 @@ export interface Room {
     temperature: number,
     time: string
 }
+
+export interface Plots {
+    temperature: string,
+    humidity: string,
+    pressure: string
+}
