@@ -26,7 +26,6 @@ const RoomDetailsPage = () => {
                 const plots = await findPlots(id);
                 setPlots(plots)
                 setRoom(room)
-                console.log(room)
             } catch (e) {
                 if (isAxiosError(e) && e.response) {
                     setError(e.response.data.message)
@@ -53,7 +52,7 @@ const RoomDetailsPage = () => {
                         </Button>
                     </Link>
                 </div>
-                <TemperatureComponent room={room} plot={plots?.temperature}/>
+                <TemperatureComponent room={room} plot={plots?.temperature} setIsLoading={setIsLoading}/>
                 <HumidityComponent room={room} plot={plots?.humidity}/>
                 <PressureComponent room={room} plot={plots?.pressure}/>
             </div>

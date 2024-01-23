@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Thermometer} from "react-bootstrap-icons";
-import {Image} from "react-bootstrap";
+import {Button, Image} from "react-bootstrap";
 import {Room} from "../utils/types";
+import ChangeTemperatureModal from "./modals/ChangeTemperatureModal";
 
 type TemperatureComponentProps = {
     room?: Room,
-    plot?: string
+    plot?: string,
+    setIsLoading: (state:boolean) => void
 }
 
-const TemperatureComponent = ({room, plot}: TemperatureComponentProps) => {
+const TemperatureComponent = ({room, plot, setIsLoading}: TemperatureComponentProps) => {
+    const [isModalOpened, setIsModalOpened] = useState(false)
+
     return (
         <div className="d-flex justify-content-between align-items-center w-100">
             <div className="d-flex flex-column bg-primary rounded-4 hover-class">
@@ -29,6 +33,8 @@ const TemperatureComponent = ({room, plot}: TemperatureComponentProps) => {
                             <h5 className="fw-bold text-center text-black">{room?.preferred_temp} °C</h5>
                             <Thermometer size={35} className="text-black"/>
                         </div>
+                        <Button onClick={() => setIsModalOpened(true)} className="rounded-3">Change preferred temperature</Button>
+                        <ChangeTemperatureModal isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} setIsLoading={setIsLoading} roomId={room?.id}/>
                     </div>
                 </div>
             </div>
