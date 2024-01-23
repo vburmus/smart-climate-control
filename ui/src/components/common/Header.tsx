@@ -27,9 +27,11 @@ const Header = () => {
                     </Link>
                 ))}
             </div>
-            <Button variant="primary" className="rounded-3 fw-bold text-white fs-5">
-                Button
-            </Button>
+            <Link to="/">
+                <Button variant="primary" className="rounded-3 fw-bold text-white fs-5">
+                    About Us
+                </Button>
+            </Link>
         </header>
     );
 };
