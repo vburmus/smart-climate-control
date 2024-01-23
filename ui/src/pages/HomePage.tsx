@@ -1,6 +1,7 @@
 import React from 'react';
 import Loader from "../components/common/Loader";
 import {Image} from "react-bootstrap";
+import "../styles/Hover.css"
 
 const HomePage = () => {
     return (
@@ -21,7 +22,7 @@ const HomePage = () => {
             </div>
 
             <div className="d-flex flex-wrap align-items-center w-100 justify-content-around">
-                <div className="d-flex flex-column gap-5 w-50">
+                <div className="d-flex flex-column gap-5 w-50 hover-class">
                     <h1 className="fw-bold text-primary text-center">Sensors in your house?</h1>
                     <h4 className="fw-bold text-center">Smart Climate Control empowers you with a comprehensive sensor network strategically placed in each room of your house.
                         These sensors, integrated into client Raspberry Pi devices, continuously measure temperature and humidity.
@@ -29,12 +30,12 @@ const HomePage = () => {
                         providing you with accurate and up-to-date information about the climate conditions in every corner of your home.
                     </h4>
                 </div>
-                <Image src="https://image.lexica.art/full_webp/24f038eb-143d-4c80-9c81-d27e1059ef59" style={{width: 500, height:400, borderRadius: 50}}/>
+                <Image src="https://image.lexica.art/full_webp/24f038eb-143d-4c80-9c81-d27e1059ef59" style={{width: 500, height:400, borderRadius: 50}} className="hover-class"/>
             </div>
 
             <div className="d-flex flex-wrap align-items-center w-100 justify-content-around">
-                <Image src="https://image.lexica.art/full_webp/1f087e37-2bda-4a1d-8141-b1f92526e360" style={{width: 500, height:400, borderRadius: 50}}/>
-                <div className="d-flex flex-column gap-5 w-50">
+                <Image src="https://image.lexica.art/full_webp/1f087e37-2bda-4a1d-8141-b1f92526e360" style={{width: 500, height:400, borderRadius: 50}} className="hover-class"/>
+                <div className="d-flex flex-column gap-5 w-50 hover-class">
                     <h1 className="fw-bold text-primary text-center">Check the room situation!</h1>
                     <h4 className="fw-bold text-center">Curious about the current climate in a specific room?
                         Our web application enables you to effortlessly check the situation in each room equipped with Smart Climate Control.
@@ -46,19 +47,19 @@ const HomePage = () => {
             </div>
 
             <div className="d-flex flex-wrap align-items-center w-100 justify-content-around">
-                <div className="d-flex flex-column gap-5 w-50">
+                <div className="d-flex flex-column gap-5 w-50 hover-class">
                     <h1 className="fw-bold text-primary text-center">Add room to application!</h1>
                     <h4 className="fw-bold text-center">Customize Smart Climate Control to match the unique layout of your home by easily adding rooms to the application.
                         Simply configure a client Raspberry Pi in the desired room, and our system will seamlessly integrate it into the network.
                         Once added, you can monitor and control the climate conditions in the new room through the intuitive web interface, ensuring a tailored and comfortable environment.
                     </h4>
                 </div>
-                <Image src="https://image.lexica.art/full_webp/2b9277fd-fe87-4011-8b7a-01b7605bbc11" style={{width: 500, height:400, borderRadius: 50}}/>
+                <Image src="https://image.lexica.art/full_webp/2b9277fd-fe87-4011-8b7a-01b7605bbc11" style={{width: 500, height:400, borderRadius: 50}} className="hover-class"/>
             </div>
 
             <div className="d-flex flex-wrap align-items-center w-100 justify-content-around">
-                <Image src="https://image.lexica.art/full_webp/4994521b-772c-461d-bbaf-bbf55f44cc8e" style={{width: 500, height:400, borderRadius: 50}}/>
-                <div className="d-flex flex-column gap-5 w-50">
+                <Image src="https://image.lexica.art/full_webp/4994521b-772c-461d-bbaf-bbf55f44cc8e" style={{width: 500, height:400, borderRadius: 50}} className="hover-class"/>
+                <div className="d-flex flex-column gap-5 w-50 hover-class">
                     <h1 className="fw-bold text-primary text-center">Receive alerts!</h1>
                     <h4 className="fw-bold text-center">Stay connected and informed with Smart Climate Control's alert system.
                         Receive instant notifications on your web app for critical events such as smoke detection or unusually low temperatures.
