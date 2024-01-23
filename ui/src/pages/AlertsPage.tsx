@@ -8,7 +8,7 @@ const AlertsPage = () => {
     const alertParams = [
         "Action", "Cause", "Room", "Date", "Time"
     ];
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [alerts, setAlerts] = useState<Alert[]>()
     const [error, setError] = useState()
 
