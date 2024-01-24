@@ -1,5 +1,5 @@
 import mysql.connector as mysql
-from config import DATABASE_CONFIG
+from config_server import DATABASE_CONFIG
 
 def connect_to_db():
     config = DATABASE_CONFIG
