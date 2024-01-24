@@ -30,7 +30,7 @@ const AlertsPage = () => {
         fetchData()
     }, []);
 
-    return (isLoading ? <Loader/> : error || !alerts ? <h1 className="m-5 fw-bold text-center text-danger">{error}</h1> :
+    return (isLoading ? <Loader/> : error || !alerts ? <h2 className="m-5 fw-bold text-center text-danger">{error ? error: "Connection refused!"}</h2> :
             <div className="d-flex flex-column m-5 gap-3 w-75">
                 <h2 className="fw-bold text-primary text-center">Your alerts:</h2>
 

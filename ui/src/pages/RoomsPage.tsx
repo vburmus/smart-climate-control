@@ -29,7 +29,7 @@ const RoomsPage = () => {
     }, []);
 
 
-    return ( isLoading ? <Loader/> : error || !rooms ? <h2 className="m-5 fw-bold text-center text-danger">{error}</h2> :
+    return ( isLoading ? <Loader/> : error || !rooms ? <h2 className="m-5 fw-bold text-center text-danger">{error ? error : "Connection refused!"}</h2> :
         <div className="d-flex flex-column m-5 gap-5">
             <h2 className="fw-bold text-primary text-center">Your rooms:</h2>
             <div className="d-flex flex-wrap gap-5 justify-content-center">
