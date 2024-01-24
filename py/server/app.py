@@ -1,6 +1,6 @@
 #!/home/maryush/Documents/IoT/venv/bin/python3
 from flask import Flask, jsonify,request
-from flask_cors import CORS 
+from flask_cors import CORS
 import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
@@ -8,7 +8,7 @@ from mqtt_utils_server import connect,configure_broker,publish_message
 from db_utils import connect_to_db
 from config_server import MQTT_CONFIG,get_topic
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": "https://156.17.234.83", "methods":["GET", "POST"]}})
 db = connect_to_db()
 client = configure_broker()
 cursor = db.cursor()
@@ -139,4 +139,4 @@ def update_room_temperature(room_id):
     
 if __name__ == '__main__':
     connect(client)
-    app.run(host='0.0.0.0', port=8080)
+    app.run(ssl_context=('keys/web_certificates/certificate.crt', 'keys/web_certificates/private.key'), host='0.0.0.0', port=8443)
