@@ -10,7 +10,7 @@ ___
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
-
+___
 ## Description 
 The project involves creating a temperature and humidity control system using the Raspberry Pi platform and dedicated sensors. Below are the
 main functional requirements for the client (Raspberry Pi) and the server.
@@ -27,3 +27,12 @@ main functional requirements for the client (Raspberry Pi) and the server.
 5. Ability to add additional rooms (Plug and Play)
 6. Sending feedback to clients
 7. Sending notifications to users
+___
+### System architecture
+![system](https://github.com/vburmus/smart-climate-control/assets/118392004/bb320d61-e86e-4a7d-84e7-d742e7b2fd15)
+___
+### User interface 
+![ui1](https://github.com/vburmus/smart-climate-control/assets/118392004/4821a559-032b-434d-8414-bb9e78508a4c)
+![ui2](https://github.com/vburmus/smart-climate-control/assets/118392004/8f993852-af3c-447d-a8e5-8a6f91b83a58)
+![ui3](https://github.com/vburmus/smart-climate-control/assets/118392004/3f59e418-35c7-4a6d-9ed9-c8ae687cc800)
+![ui4](https://github.com/vburmus/smart-climate-control/assets/118392004/db0d42f3-a6d4-4754-b7b5-684f1e9e9481)
